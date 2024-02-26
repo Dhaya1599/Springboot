@@ -17,27 +17,30 @@ public class RabbitMQConfig {
 
     public static final String Routing_key = "rabbit_routing_key";
 
-  @Bean
+    @Bean
     public Queue queue()
-  {
-      return new Queue(Queue);
-  }
-  @Bean
+    {
+        return new Queue(Queue);
+    }
+
+    @Bean
     public DirectExchange directExchange()
-  {
-      return new DirectExchange(Exchange);
-  }
-  @Bean
-  public Binding binding(Queue queue, DirectExchange directExchange)
-  {
-      return BindingBuilder.bind(queue).to(directExchange).with(Routing_key);
-  }
+    {
+        return new DirectExchange(Exchange);
+    }
+
+   @Bean
+   public Binding binding(Queue queue, DirectExchange directExchange)
+   {
+       return BindingBuilder.bind(queue).to(directExchange).with(Routing_key);
+   }
+
     @Bean
     public MessageConverter messageConverter()
+    {
+        return new Jackson2JsonMessageConverter();
+    }
 
-        {
-            return new Jackson2JsonMessageConverter();
-        }
 
     @Bean
     public AmqpTemplate getTemplate(ConnectionFactory connectionFactory)

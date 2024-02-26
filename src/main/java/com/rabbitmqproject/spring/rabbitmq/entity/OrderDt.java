@@ -3,11 +3,9 @@ package com.rabbitmqproject.spring.rabbitmq.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.core.annotation.Order;
 
 
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class OrderDt {
@@ -17,4 +15,9 @@ public class OrderDt {
     private String messages;
 
 
+    public OrderDt(com.rabbitmqproject.spring.rabbitmq.entity.Order order, String orderPlaced, String messages) {
+        this.order= order;
+        this.orderStatus=orderPlaced;
+        this.messages=messages;
+    }
 }
